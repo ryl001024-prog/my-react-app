@@ -51,6 +51,8 @@
     // 强制 switch 语句中必须有 break 或 return，防止 case 穿透
     // 避免常见的逻辑错误
     "noFallthroughCasesInSwitch": true,
+    "allowJs": true,
+    "checkJs": false,
     // 专门针对 React 19 实验性特性的类型定义
     // 确保 TypeScript 能正确理解 React 19 的新 API 和类型
     "types": [
@@ -67,8 +69,13 @@
   "include": [
     "src",
     "src/**/*.ts",
-    "src/**/*.js",
     "src/**/*.tsx",
+    "src/**/*.jsx",
+    "src/**/*.js",
+    "src/**/*.mjs",
+    "src/**/*.cjs",
+    "src/**/*.less",
+    "src/**/*.css"
   ],
   "exclude": [
     "node_modules" // 排除的文件

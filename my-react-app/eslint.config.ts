@@ -28,7 +28,7 @@ export default defineConfig([
       parser: typescriptParser,
     },
     rules: {
-      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      // "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
       "no-var": "error", // 不能使用var声明变量
       "no-extra-semi": "error",
       "@typescript-eslint/indent": ["error", 2],

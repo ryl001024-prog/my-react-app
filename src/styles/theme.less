@@ -1,0 +1,136 @@
+// 主题变量定义
+:root {
+  // 主色调 - 可以通过 JS 动态修改
+  --primary-color: #1677ff;
+  --primary-color-hover: #4096ff;
+  --primary-color-active: #0958d9;
+
+  // 成功色
+  --success-color: #52c41a;
+  --success-color-hover: #73d13d;
+
+  // 警告色
+  --warning-color: #faad14;
+  --warning-color-hover: #ffc53d;
+
+  // 错误色
+  --error-color: #ff4d4f;
+  --error-color-hover: #ff7875;
+
+  // 信息色
+  --info-color: #1677ff;
+  --info-color-hover: #4096ff;
+
+  // 渐变色（用于 Logo 等装饰性元素）
+  --gradient-start: var(--primary-color);
+  --gradient-end: #9333ea;
+
+  // 文本颜色
+  --text-primary: rgba(0, 0, 0, 0.88);
+  --text-secondary: rgba(0, 0, 0, 0.65);
+  --text-tertiary: rgba(0, 0, 0, 0.45);
+  --text-disabled: rgba(0, 0, 0, 0.25);
+
+  // 背景颜色
+  --bg-primary: #ffffff;
+  --bg-secondary: rgba(0, 0, 0, 0.02);
+  --bg-tertiary: rgba(0, 0, 0, 0.04);
+
+  // 边框颜色
+  --border-color: rgba(5, 5, 5, 0.06);
+  --border-color-hover: rgba(5, 5, 5, 0.15);
+
+  // 阴影
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  // 圆角
+  --border-radius-sm: 6px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  // 间距
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  // 默认使用亮色模式颜色
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // ant_design input聚焦主题
+  --ant-input-active-bg: #ffffff;
+  --ant-input-hover-bg: #f5f5f5;
+}
+
+// 亮色模式（默认，已在 :root 中定义）
+// 如果需要覆盖，可以在这里添加 @media (prefers-color-scheme: light)
+
+// 暗色模式
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: rgba(255, 255, 255, 0.88);
+    --text-secondary: rgba(255, 255, 255, 0.65);
+    --text-tertiary: rgba(255, 255, 255, 0.45);
+    --text-disabled: rgba(255, 255, 255, 0.25);
+
+    --bg-primary: rgba(255, 255, 255, 0.08);
+    --bg-secondary: rgba(0, 0, 0, 0.85);
+    --bg-tertiary: rgba(255, 255, 255, 0.12);
+
+    --border-color: rgba(255, 255, 255, 0.12);
+    --border-color-hover: rgba(255, 255, 255, 0.2);
+
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3),
+      0 1px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+    --ant-input-active-bg: rgba(255, 255, 255, 0.08);
+    // --ant-input-hover-bg: rgba(255, 255, 255, 0.08);
+    --ant-input-hover-bg: #f5f5f5;
+
+    // 更新根元素颜色以匹配暗色模式
+    color: var(--text-primary);
+    background-color: var(--bg-secondary);
+  }
+}
+
+// 统一的 Card 样式类
+.card-base {
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+  }
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.card-body {
+  padding: var(--spacing-lg);
+}

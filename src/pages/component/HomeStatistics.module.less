@@ -1,0 +1,84 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statCard {
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  transition: all 0.3s;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+  }
+  
+  :global(.ant-card-body) {
+    padding: var(--spacing-lg);
+  }
+}
+
+.statContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statInfo {
+  flex: 1;
+}
+
+.statLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+.statChange {
+  font-size: 14px;
+  margin: var(--spacing-xs) 0 0 0;
+  
+  &.positive {
+    color: var(--success-color);
+  }
+  
+  &.negative {
+    color: var(--error-color);
+  }
+}
+
+.statIcon {
+  padding: 12px;
+  background: var(--bg-tertiary);
+  border-radius: var(--border-radius-md);
+  
+  :global(.i-lucide-users),
+  :global(.i-lucide-activity),
+  :global(.i-lucide-shield-check),
+  :global(.i-lucide-timer) {
+    color: var(--primary-color);
+  }
+}
+
+// 暗色模式已通过 CSS 变量自动处理
+

@@ -1,0 +1,118 @@
+.container {
+  height: 100%;
+}
+
+.card {
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  transition: all 0.3s;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+  }
+  
+  :global(.ant-card-body) {
+    padding: var(--spacing-lg);
+  }
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.activityList {
+  max-height: 328px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+  
+  // 自定义滚动条样式
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--text-disabled);
+    border-radius: 3px;
+    
+    &:hover {
+      background: var(--text-tertiary);
+    }
+  }
+}
+
+.activityItem {
+  padding: 12px !important;
+  border-radius: var(--border-radius-md);
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background: var(--bg-secondary);
+  }
+  
+  :global(.ant-list-item) {
+    border-bottom: none;
+    padding: 0;
+  }
+}
+
+.activityContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.activityAvatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+.activityInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.activityText {
+  font-size: 14px;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.activityUser {
+  font-weight: 500;
+}
+
+.activityAction {
+  color: var(--text-tertiary);
+}
+
+.activityTime {
+  font-size: 12px;
+  color: var(--text-disabled);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+.loadMoreBtn {
+  margin-top: var(--spacing-md);
+}
+
+// 暗色模式已通过 CSS 变量自动处理
+

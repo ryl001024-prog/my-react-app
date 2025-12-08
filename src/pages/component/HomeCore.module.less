@@ -1,0 +1,101 @@
+.container {
+  height: 100%;
+}
+
+.card {
+  height: 100%;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  transition: all 0.3s;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+  }
+  
+  :global(.ant-card-body) {
+    padding: var(--spacing-lg);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.viewAllBtn {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.featureCard {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: all 0.3s;
+  cursor: pointer;
+  
+  &:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+    
+    .featureIcon {
+      transform: scale(1.1);
+    }
+  }
+  
+  :global(.ant-card-body) {
+    padding: 0;
+  }
+}
+
+.featureIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-md);
+  transition: transform 0.3s;
+}
+
+.featureTitle {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 16px;
+}
+
+.featureDescription {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+// 暗色模式已通过 CSS 变量自动处理
+

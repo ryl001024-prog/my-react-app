@@ -1,0 +1,154 @@
+.navHeader {
+  background: var(--bg-primary);
+  padding: 0;
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  :global(.ant-menu) {
+    border-bottom: none;
+    background: transparent;
+  }
+}
+
+.navContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  @media (min-width: 640px) {
+    padding: 0 24px;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 32px;
+  }
+}
+
+.navContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoText {
+  margin-left: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.desktopNav {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.navMenu {
+  :global(.ant-menu-item) {
+    color: var(--text-secondary);
+    padding: 0 12px;
+    margin: 0 8px;
+    border-radius: var(--border-radius-sm);
+    transition: all 0.2s;
+
+    &:hover {
+      color: var(--primary-color);
+      background: var(--bg-tertiary);
+    }
+  }
+}
+
+.rightSection {
+  display: none;
+  align-items: center;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.searchInput {
+  // width: 256px;
+  // background: var(--bg-primary);
+  // color: var(--text-primary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  transition: all 0.3s;
+
+  &:hover {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+  }
+
+  :global(.ant-input) {
+    border-radius: 6px;
+  }
+}
+
+.notificationIcon {
+  font-size: 20px;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+  }
+}
+
+.mobileMenu {
+  display: block;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobileMenuList {
+  padding: 8px 0;
+  border: none;
+
+  :global(.ant-menu-item) {
+    margin: 4px 8px;
+    border-radius: var(--border-radius-sm);
+    padding: 12px 16px !important;
+
+    &:hover {
+      background: var(--bg-tertiary);
+      color: var(--primary-color);
+    }
+  }
+}
+
+// 暗色模式已通过 CSS 变量自动处理，无需重复定义
+

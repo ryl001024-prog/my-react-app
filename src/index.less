@@ -1,0 +1,88 @@
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+} */
+/*a标签去除默认样式*/
+a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  color: var(--text-primary);
+}
+
+/*li*/
+ul,
+ol {
+  list-style: none;
+}
+
+/*img*/
+img {
+  vertical-align: top;
+  border: none;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--border-color-hover);
+  }
+}
+
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     color: #213547;
+//     background-color: #ffffff;
+//   }
+
+//   a:hover {
+//     color: #747bff;
+//   }
+
+//   button {
+//     background-color: #f9f9f9;
+//   }
+// }

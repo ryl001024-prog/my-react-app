@@ -1,0 +1,121 @@
+.layout {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+}
+
+.content {
+  flex: 1;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  
+  @media (min-width: 640px) {
+    padding: 32px 24px;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 32px 32px;
+  }
+}
+
+.welcomeSection {
+  margin-bottom: 32px;
+}
+
+.welcomeTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.2;
+  
+  @media (min-width: 640px) {
+    font-size: 36px;
+  }
+}
+
+.welcomeDescription {
+  margin: 8px 0 0 0;
+  color: var(--text-tertiary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 32px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+
+.footer {
+  margin-top: 48px;
+  border-top: 1px solid var(--border-color);
+  background: transparent;
+  padding: 32px 16px;
+  
+  @media (min-width: 640px) {
+    padding: 32px 24px;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 32px 32px;
+  }
+}
+
+.footerContent {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+}
+
+.footerLogoIcon {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerLogoText {
+  margin-left: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.footerCopyright {
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
+// 暗色模式已通过 CSS 变量自动处理，无需重复定义
+

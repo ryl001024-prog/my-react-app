@@ -10,11 +10,7 @@
     // - ES2020: 现代 JavaScript 特性类型
     // - DOM: 浏览器 DOM API 类型
     // - DOM.Iterable: 可迭代的 DOM 集合类型
-    "lib": [
-      "ES2020",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
     // 模块系统：使用 ESNext（最新的 ES 模块标准）
     // 这样可以使用动态 import() 等现代模块特性
     "module": "ESNext",
@@ -55,15 +51,10 @@
     "checkJs": false,
     // 专门针对 React 19 实验性特性的类型定义
     // 确保 TypeScript 能正确理解 React 19 的新 API 和类型
-    "types": [
-      "react/experimental",
-      "react-dom/experimental",
-    ],
+    "types": ["react/experimental", "react-dom/experimental"],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
   "include": [

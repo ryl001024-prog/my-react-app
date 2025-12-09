@@ -3,11 +3,11 @@
   grid-template-columns: repeat(1, 1fr);
   gap: 24px;
   margin-bottom: 32px;
-  
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   @media (min-width: 1024px) {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -19,12 +19,12 @@
   box-shadow: var(--shadow-sm);
   background: var(--bg-primary);
   transition: all 0.3s;
-  
+
   &:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
   }
-  
+
   :global(.ant-card-body) {
     padding: var(--spacing-lg);
   }
@@ -57,11 +57,11 @@
 .statChange {
   font-size: 14px;
   margin: var(--spacing-xs) 0 0 0;
-  
+
   &.positive {
     color: var(--success-color);
   }
-  
+
   &.negative {
     color: var(--error-color);
   }
@@ -71,7 +71,7 @@
   padding: 12px;
   background: var(--bg-tertiary);
   border-radius: var(--border-radius-md);
-  
+
   :global(.i-lucide-users),
   :global(.i-lucide-activity),
   :global(.i-lucide-shield-check),
@@ -81,4 +81,3 @@
 }
 
 // 暗色模式已通过 CSS 变量自动处理
-

@@ -13,7 +13,7 @@ export const defaultTheme: ThemeConfig = {
   successColor: "#52c41a",
   warningColor: "#faad14",
   errorColor: "#ff4d4f",
-  infoColor: "#1677ff"
+  infoColor: "#1677ff",
 };
 
 // 预设主题
@@ -24,36 +24,36 @@ export const themes: Record<string, ThemeConfig> = {
     successColor: "#52c41a",
     warningColor: "#faad14",
     errorColor: "#ff4d4f",
-    infoColor: "#1677ff"
+    infoColor: "#1677ff",
   },
   green: {
     primaryColor: "#52c41a",
     successColor: "#52c41a",
     warningColor: "#faad14",
     errorColor: "#ff4d4f",
-    infoColor: "#52c41a"
+    infoColor: "#52c41a",
   },
   purple: {
     primaryColor: "#722ed1",
     successColor: "#52c41a",
     warningColor: "#faad14",
     errorColor: "#ff4d4f",
-    infoColor: "#722ed1"
+    infoColor: "#722ed1",
   },
   orange: {
     primaryColor: "#fa8c16",
     successColor: "#52c41a",
     warningColor: "#faad14",
     errorColor: "#ff4d4f",
-    infoColor: "#fa8c16"
+    infoColor: "#fa8c16",
   },
   red: {
     primaryColor: "#ff4d4f",
     successColor: "#52c41a",
     warningColor: "#faad14",
     errorColor: "#ff4d4f",
-    infoColor: "#ff4d4f"
-  }
+    infoColor: "#ff4d4f",
+  },
 };
 
 // 应用主题到 CSS 变量
@@ -62,11 +62,11 @@ export const applyTheme = (theme: ThemeConfig) => {
   root.style.setProperty("--primary-color", theme.primaryColor);
   root.style.setProperty(
     "--primary-color-hover",
-    adjustBrightness(theme.primaryColor, 20)
+    adjustBrightness(theme.primaryColor, 20),
   );
   root.style.setProperty(
     "--primary-color-active",
-    adjustBrightness(theme.primaryColor, -20)
+    adjustBrightness(theme.primaryColor, -20),
   );
   root.style.setProperty("--success-color", theme.successColor);
   root.style.setProperty("--warning-color", theme.warningColor);
@@ -103,4 +103,3 @@ export const getStoredTheme = (): ThemeConfig => {
 export const saveTheme = (theme: ThemeConfig) => {
   localStorage.setItem("app-theme", JSON.stringify(theme));
 };
-

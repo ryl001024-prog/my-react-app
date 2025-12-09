@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import UnoCSS from "unocss/vite";
-import AutoImport from 'unplugin-auto-import/vite'
+import AutoImport from "unplugin-auto-import/vite";
 import AntdResolver from "unplugin-auto-import-antd";
 import { resolve } from "path";
 // https://vite.dev/config/
@@ -10,8 +10,8 @@ export default defineConfig({
     react(),
     UnoCSS(),
     AutoImport({
-      resolvers: [AntdResolver()]
-    })
+      resolvers: [AntdResolver()],
+    }),
   ],
   resolve: {
     alias: {

@@ -4,12 +4,12 @@
   box-shadow: var(--shadow-sm);
   background: var(--bg-primary);
   transition: all 0.3s;
-  
+
   &:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
   }
-  
+
   :global(.ant-card-body) {
     padding: var(--spacing-lg);
   }
@@ -31,7 +31,7 @@
   background: var(--bg-primary);
   transition: all 0.3s;
   gap: 16px;
-  
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -48,19 +48,19 @@
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   background: var(--bg-primary);
-  
+
   &:hover {
     box-shadow: var(--shadow-md);
-    
+
     .actionIcon {
       transform: scale(1.1);
     }
-    
+
     .actionText {
       color: var(--text-primary);
     }
   }
-  
+
   :global(.ant-card-body) {
     padding: var(--spacing-lg);
     display: flex;
@@ -89,4 +89,3 @@
 }
 
 // 暗色模式已通过 CSS 变量自动处理
-

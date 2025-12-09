@@ -43,10 +43,11 @@ export default defineConfig({
     "card-hover": "transition-all duration-300 hover:shadow-lg hover:scale-102",
     "gradient-text":
       "bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent",
-      "no-scrollbar": "overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+    "no-scrollbar":
+      "overflow-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
     "btn-primary":
       "bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors",
-   "custom-scrollbar":
+    "custom-scrollbar":
       "[&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:bg-slate-400 dark:[&::-webkit-scrollbar-thumb]:bg-slate-600 dark:[&::-webkit-scrollbar-thumb]:hover:bg-slate-500",
   },
   rules: [

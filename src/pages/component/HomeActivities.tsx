@@ -6,7 +6,7 @@ const recentActivities = [
   { user: "张三", action: "创建了新项目", time: "2分钟前", avatar: "张" },
   { user: "李四", action: "更新了配置", time: "5分钟前", avatar: "李" },
   { user: "王五", action: "部署了应用", time: "1小时前", avatar: "王" },
-  { user: "赵六", action: "完成了任务", time: "2小时前", avatar: "赵" }
+  { user: "赵六", action: "完成了任务", time: "2小时前", avatar: "赵" },
 ];
 
 const HomeActivities: React.FC = () => (
@@ -21,7 +21,7 @@ const HomeActivities: React.FC = () => (
               <Avatar
                 className={styles.activityAvatar}
                 style={{
-                  background: "linear-gradient(to right, #3b82f6, #9333ea)"
+                  background: "linear-gradient(to right, #3b82f6, #9333ea)",
                 }}
               >
                 {activity.avatar}

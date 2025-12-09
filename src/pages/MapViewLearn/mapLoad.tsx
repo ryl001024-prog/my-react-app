@@ -20,8 +20,6 @@ const MapLoadPage = () => {
       message.warning("无效的位置信息");
       return;
     }
-
-    console.log("选中的POI:", poi);
     message.success(`找到: ${poi.name}`);
 
     // 将地图中心移动到搜索结果位置
@@ -30,7 +28,7 @@ const MapLoadPage = () => {
     // 添加标记
     const marker = new (AMapInstance as any).Marker({
       position: poi.location,
-      title: poi.name
+      title: poi.name,
     });
     mapInstance.add(marker);
   };
@@ -56,7 +54,7 @@ const MapLoadPage = () => {
 
 const SearchForm = ({
   onSelect,
-  mapRef
+  mapRef,
 }: {
   onSelect: (_poi: any) => void;
   mapRef: React.RefObject<MapContainerRef | null>;
@@ -76,7 +74,7 @@ const SearchForm = ({
       // 创建 AMap.AutoComplete 实例
       const autoComplete = new (AMapInstance as any).AutoComplete({
         input: inputRef.current.input,
-        city: mapRef.current?.CurrentInfo?.city || "全国"
+        city: mapRef.current?.CurrentInfo?.city || "全国",
       });
 
       autoCompleteRef.current = autoComplete;
@@ -89,11 +87,15 @@ const SearchForm = ({
           onSelect(poi);
         } else {
           const placeSearch = new (AMapInstance as any).PlaceSearch({
-            city: mapRef.current?.CurrentInfo?.city || "全国"
+            city: mapRef.current?.CurrentInfo?.city || "全国",
           });
 
           placeSearch.search(poi.name, (status: string, result: any) => {
-            if (status === "complete" && result.poiList && result.poiList.pois.length > 0) {
+            if (
+              status === "complete" &&
+              result.poiList &&
+              result.poiList.pois.length > 0
+            ) {
               const detailedPoi = result.poiList.pois[0];
               setKeywords(detailedPoi.name);
               onSelect(detailedPoi);
@@ -128,11 +130,15 @@ const SearchForm = ({
     }
 
     const placeSearch = new (AMapInstance as any).PlaceSearch({
-      city: mapRef.current?.CurrentInfo?.city || "全国"
+      city: mapRef.current?.CurrentInfo?.city || "全国",
     });
 
     placeSearch.search(keywords, (status: string, result: any) => {
-      if (status === "complete" && result.poiList && result.poiList.pois.length > 0) {
+      if (
+        status === "complete" &&
+        result.poiList &&
+        result.poiList.pois.length > 0
+      ) {
         const firstPoi = result.poiList.pois[0];
         onSelect(firstPoi);
       } else {

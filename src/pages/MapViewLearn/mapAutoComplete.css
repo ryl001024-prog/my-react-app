@@ -2,56 +2,55 @@
 
 /* 提示框容器 */
 .amap-sug-result {
-    position: absolute !important;
-    background: #e8e5e5 !important;
-    border: 1px solid #e8e8e8 !important;
-    border-radius: 8px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-    overflow: hidden !important;
+  position: absolute !important;
+  background: #e8e5e5 !important;
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden !important;
 }
 
 /* 提示项 */
 .amap-sug-result .auto-item {
-    padding: 10px 10px !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    border-bottom: 1px solid #f0f0f0 !important;
-    color: #333 !important;
-    font-size: 14px !important;
-    line-height: 1.5 !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
+  padding: 10px 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
 }
 
 /* 最后一项不显示底部边框 */
 .amap-sug-result .auto-item:last-child {
-    border-bottom: none !important;
+  border-bottom: none !important;
 }
 
 /* 鼠标悬停效果 */
 .amap-sug-result .auto-item:hover,
 .amap-sug-result .auto-item.selected {
-    background: #f5f5f5 !important;
-    color: #1890ff !important;
+  background: #f5f5f5 !important;
+  color: #1890ff !important;
 }
-
 
 /* 提示项地址 */
 .amap-sug-result .auto-item .address {
-    font-size: 12px !important;
-    color: #8c8c8c !important;
+  font-size: 12px !important;
+  color: #8c8c8c !important;
 }
 
 /* 选中状态的文字颜色 */
 .amap-sug-result .auto-item:hover .name,
 .amap-sug-result .auto-item.selected .name {
-    color: #1890ff !important;
+  color: #1890ff !important;
 }
 
 /* 无结果提示 */
 .amap-sug-result .no-result {
-    padding: 20px !important;
-    text-align: center !important;
-    color: #8c8c8c !important;
-    font-size: 14px !important;
+  padding: 20px !important;
+  text-align: center !important;
+  color: #8c8c8c !important;
+  font-size: 14px !important;
 }

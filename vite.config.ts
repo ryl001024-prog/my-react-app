@@ -10,16 +10,16 @@ export default defineConfig({
     react(),
     UnoCSS(),
     AutoImport({
-      resolvers: [AntdResolver()]
-    })
+      resolvers: [AntdResolver()],
+    }),
   ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src")
-    }
+      "@": resolve(__dirname, "src"),
+    },
   },
   // assetsInclude: ["**/*.svg"],
   define: {
-    "process.env": {}
-  }
+    "process.env": {},
+  },
 });

@@ -34,7 +34,11 @@ const HomeStatistics: React.FC<any> = () => (
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
           核心功能
         </h2>
-        <Button className="flex items-center" icon={<ArrowRightOutlined />} iconPlacement={'end'}>
+        <Button
+          className="flex items-center"
+          icon={<ArrowRightOutlined />}
+          iconPlacement={"end"}
+        >
           <span>查看全部</span>
         </Button>
       </div>

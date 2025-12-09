@@ -1,0 +1,11 @@
+# Ignore artifacts:
+dist
+build
+coverage
+node_modules
+.husky
+
+# Ignore system files:
+.DS_Store
+.idea
+.vscode

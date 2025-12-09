@@ -9,15 +9,15 @@ const { Header } = Layout;
 
 const navItems = [
   { title: "总览", path: "/overview" },
-  { title: "分析", path: "#/analyze" },
+  { title: "分析", path: "/analyze" },
   { title: "项目", path: "#/project" },
   { title: "团队", path: "#/team" },
-  { title: "设置", path: "#/settings" }
+  { title: "设置", path: "#/settings" },
 ];
 const HomeNav = () => {
   const menuItems = navItems.map((item) => ({
     key: item.path,
-    label: <Link to={item.path}>{item.title}</Link>
+    label: <Link to={item.path}>{item.title}</Link>,
   }));
 
   return (

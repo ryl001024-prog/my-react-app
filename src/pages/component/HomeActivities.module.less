@@ -8,12 +8,12 @@
   box-shadow: var(--shadow-sm);
   background: var(--bg-primary);
   transition: all 0.3s;
-  
+
   &:hover {
     box-shadow: var(--shadow-md);
     border-color: var(--primary-color);
   }
-  
+
   :global(.ant-card-body) {
     padding: var(--spacing-lg);
   }
@@ -30,20 +30,20 @@
   max-height: 328px;
   overflow-y: auto;
   margin-bottom: 16px;
-  
+
   // 自定义滚动条样式
   &::-webkit-scrollbar {
     width: 6px;
   }
-  
+
   &::-webkit-scrollbar-track {
     background: transparent;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: var(--text-disabled);
     border-radius: 3px;
-    
+
     &:hover {
       background: var(--text-tertiary);
     }
@@ -54,11 +54,11 @@
   padding: 12px !important;
   border-radius: var(--border-radius-md);
   transition: background-color 0.2s;
-  
+
   &:hover {
     background: var(--bg-secondary);
   }
-  
+
   :global(.ant-list-item) {
     border-bottom: none;
     padding: 0;
@@ -115,4 +115,3 @@
 }
 
 // 暗色模式已通过 CSS 变量自动处理
-

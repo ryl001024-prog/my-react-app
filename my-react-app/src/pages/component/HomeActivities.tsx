@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from "antd";
+import { Button } from "antd";
 
 // 最近活动
 const recentActivities = [
@@ -40,9 +40,7 @@ const HomeActivities: React.FC<any> = () => (
         ))}
       </div>
 
-      <Button className="w-full mt-4">
-        加载更多活动
-      </Button>
+      <Button className="w-full mt-4">加载更多活动</Button>
     </div>
   </div>
 );

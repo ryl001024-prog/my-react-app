@@ -2,7 +2,7 @@ import HomeNav from "@/pages/component/HomeNav.tsx";
 import HomeStatistics from "@/pages/component/HomeStatistics.tsx";
 import HomeCore from "@/pages/component/HomeCore.tsx";
 import HomeActivities from "@/pages/component/HomeActivities.tsx";
-import {Card} from "antd";
+import { Card } from "antd";
 
 const HomePage = () => {
   return (

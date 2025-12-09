@@ -4,19 +4,19 @@ import {
   defaultTheme,
   getStoredTheme,
   saveTheme,
-  applyTheme,
+  applyTheme
 } from "@/styles/theme";
 
 interface ThemeContextType {
   theme: ThemeConfig;
-  setTheme: (theme: ThemeConfig) => void;
+  setTheme: (_theme: ThemeConfig) => void;
   resetTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
+  children
 }) => {
   const [theme, setThemeState] = useState<ThemeConfig>(() => {
     const stored = getStoredTheme();
@@ -45,6 +45,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {

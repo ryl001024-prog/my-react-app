@@ -13,7 +13,7 @@ declare global {
     }
 
     interface MapConstructor {
-      new (container: string | HTMLElement, options?: MapOptions): MapInstance;
+      new(container: string | HTMLElement, options?: MapOptions): MapInstance;
     }
 
     interface LngLat {
@@ -22,7 +22,7 @@ declare global {
     }
 
     interface LngLatConstructor {
-      new (lng: number, lat: number): LngLat;
+      new(lng: number, lat: number): LngLat;
     }
   }
 
@@ -54,12 +54,12 @@ declare module "@amap/amap-jsapi-loader" {
   }
 
   interface AMapLoader {
-    load(options: AMapLoaderOptions): Promise<typeof AMap>;
+    load(_options: AMapLoaderOptions): Promise<typeof AMap>;
   }
 
   const loader: AMapLoader;
   export default loader;
 }
 
-export {};
+export { };
 

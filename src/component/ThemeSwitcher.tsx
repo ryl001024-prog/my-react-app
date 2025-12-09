@@ -11,7 +11,7 @@ const ThemeSwitcher: React.FC = () => {
   const handleColorChange = (color: string) => {
     setTheme({
       ...theme,
-      primaryColor: color,
+      primaryColor: color
     });
   };
 
@@ -41,7 +41,7 @@ const ThemeSwitcher: React.FC = () => {
                 color:
                   theme.primaryColor === themeConfig.primaryColor
                     ? "#fff"
-                    : themeConfig.primaryColor,
+                    : themeConfig.primaryColor
               }}
             >
               {name === "default" ? "默认" : name}

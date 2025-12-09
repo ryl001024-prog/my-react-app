@@ -6,7 +6,7 @@ const quickActions = [
   { name: "新建项目", icon: "i-lucide-plus", color: "bg-blue-500" },
   { name: "数据分析", icon: "i-lucide-bar-chart-3", color: "bg-green-500" },
   { name: "系统设置", icon: "i-lucide-settings", color: "bg-purple-500" },
-  { name: "团队管理", icon: "i-lucide-users", color: "bg-orange-500" },
+  { name: "团队管理", icon: "i-lucide-users", color: "bg-orange-500" }
 ];
 
 const HomeQuickActions: React.FC = () => {

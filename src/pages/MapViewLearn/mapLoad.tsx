@@ -1,53 +1,45 @@
 import MapContainer, { MapContainerRef } from "@/component/MapContainer";
-import { Button, message } from "antd";
-import Input from "antd/es/input/Input";
-import { useEffect, useRef } from "react";
+import { Button, Input, message } from "antd";
+import { useEffect, useRef, useState } from "react";
+import "./mapAutoComplete.css";
+import styles from "./mapLoad.module.less";
 
 const MapLoadPage = () => {
   const mapRef = useRef<MapContainerRef>(null);
 
-  const handleSearchLocation = () => {
+  const handleSearchLocation = (poi: any) => {
     const AMapInstance = mapRef.current?.AMap;
-    if (!AMapInstance) {
+    const mapInstance = mapRef.current?.map;
+
+    if (!AMapInstance || !mapInstance) {
       message.warning("地图还未加载完成，请稍后再试");
       return;
     }
 
-    // 使用 AMap.CitySearch 获取当前城市信息（基于 IP 定位）
-    const citySearch = new (AMapInstance as any).CitySearch();
-    citySearch.getLocalCity((status: string, result: any) => {
-      console.log("CitySearch status:", status);
-      console.log("CitySearch result:", result);
+    if (!poi || !poi.location) {
+      message.warning("无效的位置信息");
+      return;
+    }
 
-      if (status === "complete" && result.info === "OK") {
-        console.log("城市信息:", result);
-        console.log("城市名称:", result.city);
-        console.log("城市编码:", result.citycode);
-        console.log("行政区编码:", result.adcode);
-        console.log("矩形范围:", result.bounds);
+    console.log("选中的POI:", poi);
+    message.success(`找到: ${poi.name}`);
 
-        message.success(`当前城市: ${result.city}`);
+    // 将地图中心移动到搜索结果位置
+    mapInstance.setZoomAndCenter(16, [poi.location.lng, poi.location.lat]);
 
-        // 可选：将地图中心移动到该城市
-        const mapInstance = mapRef.current?.map;
-        if (mapInstance && result.bounds) {
-          mapInstance.setBounds(result.bounds);
-        }
-      } else {
-        console.log("获取城市信息失败");
-        message.error("获取城市信息失败");
-      }
+    // 添加标记
+    const marker = new (AMapInstance as any).Marker({
+      position: poi.location,
+      title: poi.name
     });
+    mapInstance.add(marker);
   };
 
   useEffect(() => {
-    // 等待地图加载完成后可以执行一些初始化操作
     const timer = setTimeout(() => {
       const mapInstance = mapRef.current?.map;
       if (mapInstance) {
         console.log("地图已加载完成");
-        // 可以在这里设置初始中心点
-        // mapInstance.setCenter([116.397428, 39.90923]);
       }
     }, 1000);
 
@@ -56,19 +48,121 @@ const MapLoadPage = () => {
 
   return (
     <div className="w-full h-screen overflow-hidden flex flex-col">
-      <SearchForm onSearch={handleSearchLocation} />
+      <SearchForm onSelect={handleSearchLocation} mapRef={mapRef} />
       <MapContainer ref={mapRef} />
     </div>
   );
 };
 
-const SearchForm = ({ onSearch }: { onSearch: () => void }) => {
+const SearchForm = ({
+  onSelect,
+  mapRef
+}: {
+  onSelect: (_poi: any) => void;
+  mapRef: React.RefObject<MapContainerRef | null>;
+}) => {
+  const [keywords, setKeywords] = useState("");
+  const inputRef = useRef<any>(null);
+  const autoCompleteRef = useRef<any>(null);
+
+  useEffect(() => {
+    // 等待 AMap 加载完成
+    const timer = setTimeout(() => {
+      const AMapInstance = mapRef.current?.AMap;
+      if (!AMapInstance || !inputRef.current) {
+        return;
+      }
+
+      // 创建 AMap.AutoComplete 实例
+      const autoComplete = new (AMapInstance as any).AutoComplete({
+        input: inputRef.current.input,
+        city: mapRef.current?.CurrentInfo?.city || "全国"
+      });
+
+      autoCompleteRef.current = autoComplete;
+      // 监听选择事件
+      autoComplete.on("select", (e: any) => {
+        const poi = e.poi;
+
+        if (poi && poi.location) {
+          setKeywords(poi.name);
+          onSelect(poi);
+        } else {
+          const placeSearch = new (AMapInstance as any).PlaceSearch({
+            city: mapRef.current?.CurrentInfo?.city || "全国"
+          });
+
+          placeSearch.search(poi.name, (status: string, result: any) => {
+            if (status === "complete" && result.poiList && result.poiList.pois.length > 0) {
+              const detailedPoi = result.poiList.pois[0];
+              setKeywords(detailedPoi.name);
+              onSelect(detailedPoi);
+            }
+          });
+        }
+      });
+    }, 1500);
+
+    return () => {
+      clearTimeout(timer);
+      if (autoCompleteRef.current) {
+        autoCompleteRef.current.off("select");
+        // 断开 observer
+        if ((autoCompleteRef.current as any).observer) {
+          (autoCompleteRef.current as any).observer.disconnect();
+        }
+      }
+    };
+  }, [mapRef, onSelect]);
+
+  const handleSearch = () => {
+    if (!keywords) {
+      message.warning("请输入搜索关键字");
+      return;
+    }
+
+    const AMapInstance = mapRef.current?.AMap;
+    if (!AMapInstance) {
+      message.warning("地图还未加载完成");
+      return;
+    }
+
+    const placeSearch = new (AMapInstance as any).PlaceSearch({
+      city: mapRef.current?.CurrentInfo?.city || "全国"
+    });
+
+    placeSearch.search(keywords, (status: string, result: any) => {
+      if (status === "complete" && result.poiList && result.poiList.pois.length > 0) {
+        const firstPoi = result.poiList.pois[0];
+        onSelect(firstPoi);
+      } else {
+        message.error("未找到相关地点");
+      }
+    });
+  };
+
   return (
-    <div className="grid grid-cols-10 gap-4 p-2 bg-white justify-between">
-      <Input placeholder="请输入搜索内容" className="col-span-3" />
-      <Button type="primary" className="col-span-1" onClick={onSearch}>
-        搜索
-      </Button>
+    <div className={styles.searchFormContainer}>
+      <div className={styles.searchFormContent}>
+        <Input
+          ref={inputRef}
+          value={keywords}
+          onChange={(e) => setKeywords(e.target.value)}
+          placeholder="🔍 搜索地点 (如: 北京天安门、上海外滩)"
+          className={styles.searchInput}
+          size="large"
+          onPressEnter={handleSearch}
+          allowClear
+        />
+        <Button
+          type="primary"
+          size="large"
+          onClick={handleSearch}
+          className={styles.searchButton}
+        >
+          搜索
+        </Button>
+      </div>
     </div>
   );
 };

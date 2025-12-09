@@ -8,28 +8,28 @@ const stats = [
     value: "12,847",
     change: "+12%",
     changeType: "positive",
-    icon: "i-lucide-users",
+    icon: "i-lucide-users"
   },
   {
     label: "今日活跃",
     value: "2,341",
     change: "+8%",
     changeType: "positive",
-    icon: "i-lucide-activity",
+    icon: "i-lucide-activity"
   },
   {
     label: "系统状态",
     value: "运行中",
     status: "success",
-    icon: "i-lucide-shield-check",
+    icon: "i-lucide-shield-check"
   },
   {
     label: "响应时间",
     value: "128ms",
     change: "-5%",
     changeType: "negative",
-    icon: "i-lucide-timer",
-  },
+    icon: "i-lucide-timer"
+  }
 ];
 
 const HomeStatistics: React.FC = () => (

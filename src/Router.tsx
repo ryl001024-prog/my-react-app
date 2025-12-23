@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "@/pages/Home.tsx";
 import MapLoadPage from "@/pages/MapViewLearn/mapLoad";
-import MainEchart from "@/pages/MapEcharts/mainEchart";
+import MainEcharts from "@/pages/MapEcharts/mainEchart";
 
 const RouterConfig = () => {
   return (
@@ -9,7 +9,7 @@ const RouterConfig = () => {
       <Route path="/" element={<Navigate to="/home" replace />} />
       <Route path="/home" element={<Home />} />
       <Route path="/overview" element={<MapLoadPage />} />
-      <Route path="/analyze" element={<MainEchart />} />
+      <Route path="/analyze" element={<MainEcharts />} />
       {/*<Route path="/project" element={<MapContainer />} />*/}
       {/*<Route path="/team" element={<MapContainer />} />*/}
       {/*<Route path="/settings" element={<MapContainer />} />*/}

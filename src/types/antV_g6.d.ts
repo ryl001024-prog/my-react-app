@@ -1,4 +1,5 @@
-import type { EdgeData, Graph, GraphOptions, NodeData } from "@antv/g6";
+import type { EdgeData, Graph, GraphOptions, NodeData, ComboStyle, NodeStyle, EdgeStyle } from "@antv/g6";
+
 declare global {
     namespace GraphType {
 
@@ -71,6 +72,52 @@ declare global {
 
         interface G6Graph extends Graph {
             destroyed?: boolean;
+        }
+    }
+
+    namespace GraphThemes {
+        export interface ThemeOption extends Partial<GraphOptions> {
+            background?: string;
+            node?: {
+                style?: Record<string, any> | ((...args: any[]) => NodeStyle);
+                state?: {
+                    selected?: NodeStyle;
+                    active?: NodeStyle;
+                    highlight?: NodeStyle;
+                    inactive?: NodeStyle;
+                    disabled?: NodeStyle;
+                    [key: string]: NodeStyle | undefined;
+                };
+                [key: string]: any;
+            };
+            edge?: {
+                style?: Record<string, any> | ((...args: any[]) => EdgeStyle);
+                state?: {
+                    selected?: EdgeStyle;
+                    active?: EdgeStyle;
+                    highlight?: EdgeStyle;
+                    inactive?: EdgeStyle;
+                    disabled?: EdgeStyle;
+                    [key: string]: EdgeStyle | undefined;
+                };
+                [key: string]: any;
+            };
+            combo?: {
+                style?: Record<string, any> | ((...args: any[]) => ComboStyle);
+                state?: {
+                    selected?: ComboStyle;
+                    active?: ComboStyle;
+                    highlight?: ComboStyle;
+                    inactive?: ComboStyle;
+                    disabled?: ComboStyle;
+                    // 添加索引签名 - 解决错误的核心
+                    [key: string]: ComboStyle | undefined;
+                };
+                [key: string]: any;
+            };
+            animation?: any;
+            palette?: any;
+            [key: string]: any;
         }
     }
 }

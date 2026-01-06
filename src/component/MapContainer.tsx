@@ -1,6 +1,5 @@
 /// <reference types="@amap/amap-jsapi-types" />
 import AMapLoader from "@amap/amap-jsapi-loader";
-import { message } from "antd";
 import {
   useEffect,
   forwardRef,
@@ -8,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { App } from "antd";
 
 (window as any)._AMapSecurityConfig = {
   securityJsCode: "b2c30ca0ca6b2fcab1c480374dd756bb",
@@ -29,6 +29,7 @@ type CurrentCity = {
 const MapContainer = forwardRef<MapContainerRef, any>((_props, ref) => {
   const mapRef = useRef<AMap.Map | null>(null);
   const AMapRef = useRef<typeof AMap | null>(null);
+  const { message } = App.useApp();
   const [CurrentInfo, setCurrentInfo] = useState<CurrentCity>({});
   useImperativeHandle(ref, () => ({
     // 暴露 map 实例，允许父组件直接操作地图
@@ -99,12 +100,16 @@ const MapContainer = forwardRef<MapContainerRef, any>((_props, ref) => {
             // 定位成功
             console.log("定位成功:", result);
             setCurrentInfo({
-              city: result.addressComponent?.city || result.addressComponent?.province,
+              city:
+                result.addressComponent?.city ||
+                result.addressComponent?.province,
               adcode: result.addressComponent?.adcode,
               citycode: result.addressComponent?.citycode,
               bounds: undefined, // Geolocation 结果不直接包含 bounds，但定位自动跳转了
             });
-            message.success(`定位成功: ${result.addressComponent?.city || result.addressComponent?.province}`);
+            message.success(
+              `定位成功: ${result.addressComponent?.city || result.addressComponent?.province}`,
+            );
           } else {
             // 定位失败 - 降级处理
             console.warn("定位失败:", result);
@@ -131,7 +136,7 @@ const MapContainer = forwardRef<MapContainerRef, any>((_props, ref) => {
       mapRef.current = null;
       AMapRef.current = null;
     };
-  }, []);
+  }, [message]);
 
   return <div id="container" className="w-full h-full" />;
 });

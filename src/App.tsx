@@ -1,9 +1,9 @@
-import { ConfigProvider } from "antd";
-import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
+import { ConfigProvider, App as AntdApp } from "antd";
+import { useThemeStore } from "@/store/themeStore";
 import RouterConfig from "./Router";
 
 function AppContent() {
-  const { theme } = useTheme();
+  const { theme } = useThemeStore();
 
   return (
     <ConfigProvider
@@ -33,19 +33,17 @@ function AppContent() {
         },
       }}
     >
-      <div className="w-full h-screen overflow-y-auto no-scrollbar">
-        <RouterConfig />
-      </div>
+      <AntdApp>
+        <div className="w-full h-screen overflow-y-auto no-scrollbar">
+          <RouterConfig />
+        </div>
+      </AntdApp>
     </ConfigProvider>
   );
 }
 
 function App() {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
-  );
+  return <AppContent />;
 }
 
 export default App;

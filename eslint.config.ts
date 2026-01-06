@@ -2,66 +2,82 @@ import js from "@eslint/js";
 import globals from "globals";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import { defineConfig, globalIgnores } from "eslint/config";
-import typescriptParser from "@typescript-eslint/parser";
-import typescriptEslint from "@typescript-eslint/eslint-plugin"; // 新增：导入插件
+import tseslint from "typescript-eslint";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
-export default defineConfig([
-  globalIgnores(["dist"]),
+export default [
+  { ignores: ["dist", "node_modules"] },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  eslintPluginPrettierRecommended,
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-    ],
+    plugins: {
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: 6,
-        sourceType: "module",
-        ecmaFeatures: {
-          modules: true,
-          jsx: true,
-        },
+      globals: {
+        ...globals.browser,
+        ...globals.node,
       },
-      parser: typescriptParser,
-    },
-    plugins: {
-      // 新增：注册 TypeScript ESLint 插件
-      "@typescript-eslint": typescriptEslint as any,
     },
     rules: {
-      // "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      ...reactHooks.configs.recommended.rules,
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+
+      // === 用户自定义规则恢复 ===
       "no-var": "error", // 不能使用var声明变量
       "no-extra-semi": "error",
-      indent: "off", // 交给 Prettier
-      "import/extensions": "off",
-      "linebreak-style": [0, "error", "windows"],
-      "space-before-function-paren": 0, // 在函数左括号的前面是否有空格
-      "eol-last": 0, // 不检测新文件末尾是否有空行
-      semi: "off", // 交给 Prettier
-      quotes: "off", // 交给 Prettier
-      "no-console": ["error", { allow: ["log", "warn"] }], // 允许使用console.log()
+      "no-console": ["off", { allow: ["error", "warn"] }], // 允许使用console.log()
+      // 格式化相关规则 (明确关闭冲突项，虽然 Prettier 插件会处理，但保留配置意图)
+      indent: "off",
+      semi: "off",
+      quotes: "off",
+      "comma-dangle": 0,
       "arrow-parens": 0,
-      "no-new": 0, //允许使用 new 关键字
-      "comma-dangle": 0, // 数组和对象键值对最后一个逗号，交给 Prettier 处理
+      "eol-last": 0,
+      "linebreak-style": [0, "error", "windows"],
+      "space-before-function-paren": 0,
+
+      // 其他规则
+      "import/extensions": "off",
+      "no-new": 0, // 允许使用 new 关键字
       "no-undef": 0,
+
+      // TypeScript 特定规则
+      "no-unused-vars": "off", // 关闭基础规则
+      "@typescript-eslint/no-explicit-any": [
+        "off",
+        {
+          ignoreRestArgs: true,
+          fixToUnknown: true,
+        },
+      ],
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          // 忽略以 _ 开头的变量
           varsIgnorePattern: "^_",
-          // 忽略以 _ 开头的参数
           argsIgnorePattern: "^_",
-          // 忽略接口定义中的未使用类型参数
           args: "after-used",
-          // 忽略 catch 语句中的错误参数
           caughtErrorsIgnorePattern: "^_",
         },
       ],
-      "no-unused-vars": "off", // 关闭基础的 no-unused-vars，使用 TypeScript 版本的规则
     },
   },
-]);
+  {
+    files: ["**/*.d.ts"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+    },
+  },
+  {
+    files: ["service.ts"],
+    rules: "off",
+  },
+];

@@ -1,12 +1,12 @@
 import MapContainer, { MapContainerRef } from "@/component/MapContainer";
-import { Button, Input, message } from "antd";
+import { Button, Input, App } from "antd";
 import { useEffect, useRef, useState } from "react";
 import "./mapAutoComplete.css";
 import styles from "./mapLoad.module.less";
 
 const MapLoadPage = () => {
   const mapRef = useRef<MapContainerRef>(null);
-
+  const { message } = App.useApp();
   const handleSearchLocation = (poi: any) => {
     const AMapInstance = mapRef.current?.AMap;
     const mapInstance = mapRef.current?.map;
@@ -62,6 +62,7 @@ const SearchForm = ({
   const [keywords, setKeywords] = useState("");
   const inputRef = useRef<any>(null);
   const autoCompleteRef = useRef<any>(null);
+  const { message } = App.useApp();
 
   useEffect(() => {
     // 等待 AMap 加载完成

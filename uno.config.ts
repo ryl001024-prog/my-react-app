@@ -7,7 +7,6 @@ import {
 } from "unocss";
 import presetWebFonts from "@unocss/preset-web-fonts";
 
-// @ts-ignore
 export default defineConfig({
   presets: [
     presetUno(),
@@ -21,10 +20,7 @@ export default defineConfig({
       },
     }),
     presetWebFonts({
-      // provider: "google",
-      fonts: {
-        // sans: "Inter:300,400,500,600,700",
-      },
+      fonts: {},
     }),
   ],
   theme: {

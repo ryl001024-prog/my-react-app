@@ -1,12 +1,12 @@
 import React from "react";
 import { Popover, ColorPicker, Space, Button, Divider } from "antd";
 import { BgColorsOutlined } from "@ant-design/icons";
-import { useTheme } from "@/contexts/ThemeContext";
+import { useThemeStore } from "@/store/themeStore";
 import { themes } from "@/styles/theme";
 import styles from "./ThemeSwitcher.module.less";
 
 const ThemeSwitcher: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useThemeStore();
 
   const handleColorChange = (color: string) => {
     setTheme({

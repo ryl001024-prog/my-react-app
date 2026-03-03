@@ -111,11 +111,10 @@ service.post<object, ApiResponse<User[]>, PaginationRequest>(
     try {
       const {
         page = 1,
-        pageSize = 10,
+        pageSize = 20,
         filters = {},
         sort = { field: "id", order: "asc" },
       } = req.body;
-
       let filteredData = [...mockDatabase.users];
 
       // 应用过滤条件
@@ -165,7 +164,7 @@ service.post<object, ApiResponse<User[]>, PaginationRequest>(
           data: paginatedData,
           pagination: {
             current: page,
-            pageSize,
+            pageSize: pageSize,
             total,
             totalPage: Math.ceil(total / pageSize),
           },

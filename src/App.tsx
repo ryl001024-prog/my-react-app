@@ -1,13 +1,28 @@
-import { ConfigProvider, App as AntdApp } from "antd";
+import { ConfigProvider, App as AntdApp, theme as AntdTheme } from "antd";
 import { useThemeStore } from "@/store/themeStore";
 import RouterConfig from "./Router";
+import { useEffect, useState } from "react";
 
 function AppContent() {
   const { theme } = useThemeStore();
+  const [isDarkMode, setIsDarkMode] = useState(
+    window.matchMedia("(prefers-color-scheme: dark)").matches,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const handler = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
 
   return (
     <ConfigProvider
       theme={{
+        cssVar: {},
+        algorithm: isDarkMode
+          ? AntdTheme.darkAlgorithm
+          : AntdTheme.defaultAlgorithm,
         token: {
           colorPrimary: theme.primaryColor,
           colorSuccess: theme.successColor,
@@ -15,20 +30,26 @@ function AppContent() {
           colorError: theme.errorColor,
           colorInfo: theme.infoColor,
           borderRadius: 8,
+          // 确保背景和文字色也与应用 CSS 变量一致
+          colorBgContainer: isDarkMode ? "#141414" : "#ffffff",
+          colorBgBase: isDarkMode ? "#000000" : "#ffffff",
+          colorTextBase: isDarkMode
+            ? "rgba(255, 255, 255, 0.88)"
+            : "rgba(0, 0, 0, 0.88)",
         },
-        // 通过 components 配置来修改特定组件的样式
         components: {
+          Button: {
+            // 确保按钮也使用主题色
+            colorPrimary: theme.primaryColor,
+            colorPrimaryHover: "var(--primary-color-hover)",
+            colorPrimaryActive: "var(--primary-color-active)",
+          },
           Input: {
-            // 聚焦时的背景色 - 使用你的背景色变量
             activeBg: "var(--bg-primary)",
-            // 悬停时的背景色
             hoverBg: "var(--bg-primary)",
-            // 聚焦时的边框颜色 - 使用你的边框颜色变量，移除蓝色边框
-            activeBorderColor: "var(--border-color)",
-            // 聚焦时的阴影 - 设为 none 移除蓝色阴影
-            activeShadow: "none",
-            // 悬停时的边框颜色
-            hoverBorderColor: "var(--border-color)",
+            activeBorderColor: "var(--primary-color)",
+            activeShadow: `0 0 0 2px ${theme.primaryColor}20`,
+            hoverBorderColor: "var(--primary-color)",
           },
         },
       }}

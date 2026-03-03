@@ -22,6 +22,17 @@ export default defineConfig({
   define: {
     "process.env": {},
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          antd: ["antd", "@ant-design/icons"],
+          react: ["react", "react-dom", "react-router-dom", "zustand"],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
+  },
   server: {
     open: true,
     host: "0.0.0.0",

@@ -1,5 +1,6 @@
 import { User } from "@/api/mock";
 import { useLoading } from "@/composables/useLoading";
+import { useTableScrollHeight } from "@/composables/useTableScrollHeight";
 import {
   PaginationProps,
   Table,
@@ -13,6 +14,7 @@ const UserTable = () => {
   const [users, setUsers] = useState<User[]>([]);
   const { message } = App.useApp();
   const { loading, wrapLoading } = useLoading();
+  const tableHeight = useTableScrollHeight();
   const [pagination, setPagination] = useState<{
     current: number;
     pageSize: number;
@@ -66,10 +68,16 @@ const UserTable = () => {
       dataIndex: "salary",
       align: "center",
     },
+    {
+      key: "action",
+      title: "操作",
+      dataIndex: "salary",
+      align: "center",
+    },
   ];
 
   const fetchUsers = useCallback(
-    async (page = 1, pageSize = 10) => {
+    async (page = 1, pageSize = 20) => {
       wrapLoading(async () => {
         try {
           const response = await fetch("http://127.0.0.1:3002/api/users", {
@@ -94,13 +102,15 @@ const UserTable = () => {
           const result = await response.json();
 
           if (result.success) {
+            console.log(result, "result");
+
             setUsers(result.data);
             setPagination(result.pagination);
           } else {
             throw new Error(result.message || "未知错误");
           }
         } catch (err: any) {
-          message.error("API错误:", err.toString());
+          message.error(`API错误: ${err?.message || err?.toString()}`);
         }
       });
     },
@@ -111,8 +121,8 @@ const UserTable = () => {
     fetchUsers();
   }, [fetchUsers]);
 
-  const handlePageChange = (page: number) => {
-    fetchUsers(page, pagination.pageSize);
+  const handlePageChange = (page: number, pageSize: number) => {
+    fetchUsers(page, pageSize);
   };
 
   const showTotal: PaginationProps["showTotal"] = (total) => `共 ${total} 条`;
@@ -137,6 +147,10 @@ const UserTable = () => {
         },
         content: {
           flex: 1,
+          // 添加滚动支持
+          overflowY: "auto",
+          //   maxHeight: "calc(100vh - 210px)", // 留出顶部和底部空间
+          maxHeight: `${tableHeight}px`,
         },
         footer: {
           color: "#9ca3af",
@@ -155,8 +169,8 @@ const UserTable = () => {
         },
         pagination: {
           root: {
-            padding: 10,
-            height: "60px",
+            padding: "10px 10px 0",
+            height: "40px",
           },
           item: {
             color: "#b8bdfd",

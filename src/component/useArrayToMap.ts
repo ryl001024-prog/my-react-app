@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
 interface ArrayToMapOptions<T, K, V> {
   /**
@@ -6,20 +6,20 @@ interface ArrayToMapOptions<T, K, V> {
    * 默认使用数组项的 id 属性或索引作为 key
    */
   getKey?: (item: T, index: number) => K;
-  
+
   /**
    * 自定义 value 提取函数
    * 默认使用整个数组项作为 value
    */
   getValue?: (item: T, index: number) => V;
-  
+
   /**
    * 当出现重复 key 时的处理策略
    * 'overwrite': 覆盖已存在的值（默认）
    * 'ignore': 保留已存在的值，忽略新值
    * 'throw': 抛出错误
    */
-  onDuplicateKey?: 'overwrite' | 'ignore' | 'throw';
+  onDuplicateKey?: "overwrite" | "ignore" | "throw";
 }
 
 /**
@@ -30,13 +30,13 @@ interface ArrayToMapOptions<T, K, V> {
  */
 export function useArrayToMap<T, K = string | number, V = T>(
   array: T[],
-  options?: ArrayToMapOptions<T, K, V>
+  options?: ArrayToMapOptions<T, K, V>,
 ): Map<K, V> {
   return useMemo(() => {
     const {
       getKey = (item: any, index: number) => item?.id ?? index,
       getValue = (item: T) => item as unknown as V,
-      onDuplicateKey = 'overwrite',
+      onDuplicateKey = "overwrite",
     } = options || {};
 
     const map = new Map<K, V>();
@@ -47,11 +47,11 @@ export function useArrayToMap<T, K = string | number, V = T>(
 
       if (map.has(key)) {
         switch (onDuplicateKey) {
-          case 'ignore':
+          case "ignore":
             return; // 跳过当前项
-          case 'throw':
+          case "throw":
             throw new Error(`Duplicate key found: ${key}`);
-          case 'overwrite':
+          case "overwrite":
           default:
             map.set(key, value);
         }
@@ -70,10 +70,10 @@ export function useArrayToMap<T, K = string | number, V = T>(
  * @param keyProp 作为 key 的属性名
  * @returns 转换后的 Map
  */
-export function useArrayToMapByKey<T extends Record<string, any>, K extends keyof T>(
-  array: T[],
-  keyProp: K
-): Map<T[K], T> {
+export function useArrayToMapByKey<
+  T extends Record<string, any>,
+  K extends keyof T,
+>(array: T[], keyProp: K): Map<T[K], T> {
   return useArrayToMap(array, {
     getKey: (item) => item[keyProp],
   });
